@@ -1,7 +1,10 @@
-** sch_path: /home/caio-godinho/repos/voltage-reg/schem/voltage-reg.sch
-.subckt voltage-reg OUT VSS VB1 VDD VB2
-*.PININFO OUT:O VSS:I VB1:I VDD:I VB2:I
-XM1 VDD VB1 OUT VDD sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=7 nf=1 m=1
-XM2 VSS VB2 OUT VSS sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W='7*2.8125' nf=1 m=1
+** sch_path: /home/caio-godinho/repos/vreg-training/schem/voltage-reg.sch
+.subckt voltage-reg OUT VB2 VB1
+*.PININFO OUT:O VB2:I VB1:I
+XM1 VDD VB1 OUT GND sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=7 nf=1 m=1
+XM2 VSS VB2 OUT VDD sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W='7*2.8125' nf=1 m=1
 .ends
+.GLOBAL VDD
+.GLOBAL VSS
+.GLOBAL GND
 .end

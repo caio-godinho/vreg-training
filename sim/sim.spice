@@ -5,7 +5,7 @@
 .param pvdd=5.0V
 .param pvss=0.0V
 .param pvb1=5.0V
-.param pvb2=0.0V
+.param pvb2=1.7V
 
 Vdd VDD GND SIN('pvdd' 10mV 100KHz)
 Vss VSS GND DC 'pvss'
@@ -15,10 +15,10 @@ Vb2 VB2 GND DC 'pvb2'
 
 *.noise v(OUT) Vdd dec 10 1kHz 100MEG
 
-Xreg OUT VSS VB1 VDD VB2 voltage-reg
+Xreg OUT VB2 VB1 voltage-reg
 
 .control
-tran 0.1m 10m 0m
+tran 0.1m 20m 0m
 *noise v(OUT) Vdd dec 10 1kHz 100MEG
 plot V(OUT)
 plot V(VDD)

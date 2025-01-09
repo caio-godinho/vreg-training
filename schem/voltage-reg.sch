@@ -6,12 +6,12 @@ S {}
 E {}
 N 60 80 60 110 {lab=OUT}
 N 60 170 60 200 {lab=VSS}
-N 60 -20 60 20 {lab=VDD}
-N 60 100 160 100 {lab=OUT}
 N -30 50 20 50 {lab=VB1}
 N -30 140 20 140 {lab=VB2}
-N 60 20 60 50 {lab=VDD}
-N 60 140 60 170 {lab=VSS}
+N 60 140 100 140 {lab=VDD}
+N 60 50 100 50 {lab=GND}
+N 60 100 160 100 {lab=OUT}
+N 60 -20 60 20 {lab=VDD}
 C {sky130_fd_pr/nfet_g5v0d10v5.sym} 40 50 0 0 {name=M1
 W=7
 L=0.5
@@ -41,7 +41,12 @@ model=pfet_g5v0d10v5
 spiceprefix=X
 }
 C {opin.sym} 160 100 0 0 {name=p1 lab=OUT}
-C {ipin.sym} 60 200 3 0 {name=p2 lab=VSS}
-C {ipin.sym} -30 50 0 0 {name=p3 lab=VB1}
-C {ipin.sym} 60 -20 1 0 {name=p4 lab=VDD}
-C {ipin.sym} -30 140 0 0 {name=p5 lab=VB2}
+C {lab_pin.sym} 100 140 2 0 {name=p6 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} 100 50 2 0 {name=p7 sig_type=std_logic lab=GND}
+C {lab_pin.sym} -30 50 2 1 {name=p8 sig_type=std_logic lab=VB1}
+C {lab_pin.sym} -30 140 2 1 {name=p9 sig_type=std_logic lab=VB2}
+C {vdd.sym} 60 -20 0 0 {name=l1 lab=VDD}
+C {vdd.sym} 60 200 2 0 {name=l3 lab=VSS}
+C {ipin.sym} -165 60 0 0 { name=p2 lab=VB2 }
+C {ipin.sym} -165 40 0 0 { name=p3 lab=VB1 }
+C {gnd.sym} -195 80 0 0 {name=l2 lab=GND}
