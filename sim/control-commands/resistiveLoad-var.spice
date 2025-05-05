@@ -1,0 +1,28 @@
+.probe P(VDD)
+
+.control
+* Create vectors to store results
+let res_start = 100Ohm
+let res_stop = 10KOhm
+let res_step = 495Ohm
+let res = res_start
+let count = 0
+* Run simulation for each resistor value
+while res <= res_stop
+  alterparam pres = $&res
+  reset
+  * alter Rout $&res
+  tran 0.1m 20m 0m
+*  write V(OUT)
+*  set appendwrite
+  let res = res + res_step
+*  plot tran{$&count}.V(OUT)
+  let count = count + 1
+end
+  
+* Plot all results together with a legend
+*plot all.V(OUT) ylabel 'Voltage (V)' xlabel 'Time (s)'
+set gnuplot_terminal=png
+gnuplot plots/power-res vdd:power
+gnuplot voutxres all.V(OUT)
+.endc

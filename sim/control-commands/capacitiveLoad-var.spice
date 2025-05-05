@@ -1,0 +1,25 @@
+.probe P(VDD)
+
+.control
+* Create vectors to store results
+let cap_start = 0.0u
+let cap_stop = 10u
+let cap_step = 0.5u
+let cap = cap_start
+let count = 0
+* Run simulation for each capacitor value
+while cap <= cap_stop
+  alter Cout $&cap
+  tran 0.1m 20m 0m
+  write V(OUT)
+  set appendwrite
+  let cap = cap + cap_step
+  *plot tran{$&count}.V(OUT)
+  let count = count + 1
+end
+  
+* Plot all results together with a legend
+plot all.V(OUT) ylabel 'Voltage (V)' xlabel 'Time (s)'
+set gnuplot_terminal=png
+gnuplot power VDD:power
+.endc
